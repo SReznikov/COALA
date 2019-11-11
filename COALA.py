@@ -37,6 +37,7 @@ import FileLoading
 import LigandProcess 
 import ProteinProcess
 import DockingProcess
+import ScoringProcess
 
 # FileLoading()
 # LigandProcess()
