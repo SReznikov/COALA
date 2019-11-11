@@ -3,6 +3,7 @@ import logging
 
 
 mol2Input = ''
+mol2File = ''
 
 mol_id = 0
 section_num = 0

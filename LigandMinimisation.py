@@ -8,52 +8,14 @@ import logging
 import ProgramData as data
 import AcrylamideFunctions as function
 from FileLoading import cwd as cwd
-# from LigandProcess import input_molecule as input_molecule
 
 class Minimization():
 	
-	# sections = {}
-
-	# atom_list_new = {}
-	# bond_list_new = {}
-
-	# range_of_atoms_new = None
-	# range_of_bonds_new = None
-	# starting_range_of_atoms_new = None
-	# starting_range_of_bonds_new = None
-
-	# section_num_gaff = 0
-	# H_to_remove = None
-
 
 	def __init__(self):
 		super(Minimization, self).__init__()
 
 		logging.info("Preparing the ligand molecule")
-
-
-	# def charge_calc(atom_list_new_in, range_of_atoms_new):
-
-	# 	negative_charges = []
-	# 	positive_charges = []
-
-	# 	data.atom_list_new = atom_list_new_in
-	# 	range_of_atoms_new = range_of_atoms_new
-
-	# 	for c in range(range_of_atoms_new):
-	# 		c += 1
-
-	# 		for item in data.atom_list_new["atom_%s" % c]["charge"]:
-
-	# 			if float(item) < 0:
-	# 				for i in data.atom_list_new["atom_%s" % c]["charge"]:
-	# 					negative_charges.append(float(i))
-
-	# 			if float(item) > 0:
-	# 				for i in data.atom_list_new["atom_%s" % c]["charge"]:
-	# 					positive_charges.append(float(i))
-
-	# 	return round(sum(negative_charges), 4), round(sum(positive_charges), 4)
 
 	def acpype(file, signal):
 
@@ -84,12 +46,6 @@ class Minimization():
 
 		logging.info(signal)
 		data.MinSection()
-
-		# for n in range(5):
-		# 	self.sections["section_%s" %n] = {}
-		# 	self.sections["section_%s" %n]["name"] = []
-		# 	self.sections["section_%s" %n]["lines"] = []
-
 
 		def loading():
 			print(data.MinSection.sections.keys())

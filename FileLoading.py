@@ -32,9 +32,6 @@ def CheckExt(choices):
 
     return Act
 
-# with open ('args.txt', 'w') as fp:
-# 	fp.write('-f\nbar')
-
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-c", "--mol", dest = 'mol2_filename', help="input of a list of mol2 ligands", action=CheckExt({'mol2'}))
@@ -43,12 +40,19 @@ parser.add_argument("-i", "--in", dest = 'in_file', help="docking input file", a
 parser.add_argument("-d", "--dms", dest = 'dms_file', help="surface file", action=CheckExt({'dms'}))
 
 args = parser.parse_args()
-# args.Namespace(f='bar')
-
 cwd = os.getcwd()
 logging.debug(args)
-# print(type(args.mol2_filename))
 
 print(args)
 data.mol2Input = args.mol2_filename
-# print(data.mol2Input)
+
+line = []
+for char in data.mol2Input[::-1]:
+	if char != '/':
+		line.append(char)
+	elif char == '/':
+		break
+
+for i in line[::-1]:
+	data.mol2File += i
+

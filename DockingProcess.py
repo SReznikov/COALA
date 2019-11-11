@@ -28,7 +28,7 @@ class Docking():
 			for molecule in range(data.mol_id):		
 				molecule += 1
 				molecule = str(molecule)
-				input_molecule = "mol_" + molecule + "_" + args.mol2_filename[:-5]
+				input_molecule = data.mol2File[:-5] + "_mol_" + molecule 
 
 				with open(cwd+"/"+input_molecule+"_charge.acpype/"+input_molecule+"_charge_user_gaff.mol2") as mol_file_in:
 					for line in mol_file_in:
