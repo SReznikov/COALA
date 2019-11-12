@@ -45,14 +45,35 @@ logging.debug(args)
 
 print(args)
 data.mol2Input = args.mol2_filename
+data.proteinInput = args.protein_mol2
 
-line = []
+linelib = []
 for char in data.mol2Input[::-1]:
 	if char != '/':
-		line.append(char)
+		linelib.append(char)
 	elif char == '/':
 		break
 
-for i in line[::-1]:
+for i in linelib[::-1]:
 	data.mol2File += i
 
+linepro = []
+for char in data.proteinInput[::-1]:
+	if char != '/':
+		linepro.append(char)
+	elif char == '/':
+		break
+
+for i in linepro[::-1]:
+	data.proteinFile += i
+
+
+
+temp_path = cwd + "/temp/"
+
+try:
+    os.mkdir(temp_path)
+except OSError:
+    print ("Creation of the directory %s failed" % temp_path)
+else:
+    print ("Successfully created the directory %s " % temp_path)

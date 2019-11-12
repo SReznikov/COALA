@@ -308,7 +308,7 @@ class AcrylamideReaction():
 	def WriteOutput(self):
 		logging.info("Writing first mol2 output")
 
-		with open("new_coords_temp.mol2", "w") as mol2:
+		with open("temp/new_coords_temp.mol2", "w") as mol2:
 			for i in range(5):
 				short_name = (str(data.Section.sections["section_%s" %i]["name"]).strip('[' + ']' + '\'' + '\\' + 'n'))
 

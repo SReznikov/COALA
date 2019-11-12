@@ -5,6 +5,9 @@ import logging
 mol2Input = ''
 mol2File = ''
 
+proteinInput = ''
+proteinFile = ''
+
 mol_id = 0
 section_num = 0
 range_of_atoms = 0

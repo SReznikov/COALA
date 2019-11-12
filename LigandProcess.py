@@ -15,10 +15,10 @@ with open(data.mol2Input) as input_mol2:
 	# input_file = " ".join(re.split("[^a-zA-Z_]*", str(data.mol2Input)))
 	print(data.mol2Input, "input ############")
 	# print(input_file)
-	input_file = str(data.mol2Input)[:-5]
+	input_file = str(data.mol2File)[:-5]
 	print(input_file, "input file")
 
-	with open(input_file+"_temp.mol2", "w") as temp:
+	with open("temp/" + input_file+"_temp.mol2", "w") as temp:
 
 		# data.mol_id = 0
 	
@@ -51,7 +51,7 @@ for molecule in range(data.mol_id):
 
 	data.section_num = 0
 
-	with open(input_file+"_temp.mol2") as input_temp_mol2:
+	with open("temp/" + input_file+"_temp.mol2") as input_temp_mol2:
 	
 		for line in input_temp_mol2:
 
@@ -79,7 +79,7 @@ for molecule in range(data.mol_id):
 	print("called reaction func")
 	AcrylamideReaction()
 
-	file_path = cwd+"/new_coords_temp.mol2"
+	file_path = cwd+"/temp/new_coords_temp.mol2"
 	print(cwd, "######cwd")
 	logging.info(file_path)
 
@@ -99,13 +99,13 @@ for molecule in range(data.mol_id):
 	    elif data.SectionTemplate.atom_list["atom_%s" % 1]["charge"] == []:
 	    	signal = 1
 	    	logging.info("no charges")
-	    	file = 'new_coords_temp.mol2'
+	    	file = 'temp/new_coords_temp.mol2'
 	    	minim.acpype(file, signal)
 
 
 	    minim.deprotonation(signal)
 	    minim.write_mol2_gaff(input_molecule)
-	    file = (input_molecule+"_charge.mol2")
+	    file = ("temp/" + input_molecule+"_charge.mol2")
 	    logging.info(file)
 	    signal = 2
 	    minim.acpype(file, signal)

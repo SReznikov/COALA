@@ -1,6 +1,6 @@
 import time
 import logging
-from FileLoading import args as args
+# from FileLoading import args as args
 import re
 
 import ProgramData as data
@@ -423,9 +423,9 @@ class ProteinPreparation():
 
 	def write_mol2_protein(self):
 		logging.info("Writing the protein mol2 file")
-		protein_input = args.protein_mol2[:-5]
+		protein_input = data.proteinFile[:-5]
 
-		with open(str(protein_input) +"_charge.mol2", "w") as mol2, open("cys_residue_temp.mol2", 'w') as cys_res:
+		with open("temp/" + str(protein_input) +"_charge.mol2", "w") as mol2, open("temp/cys_residue_temp.mol2", 'w') as cys_res:
 			cys_res_list = []
 
 			for i in range(5):
@@ -591,7 +591,7 @@ class ProteinPreparation():
 						mol2.write(str(sid) + '     ' + str(resname) + '     ' + str(atmnum) + '     ' + str(stype) + '     ' + str(num1) + '     ' + str(chain) + '     ' + str(resn2) + '     ' + str(num2) + '     ' + str(comment) + '\n' )				
 		
 
-		with open("cys_residue_temp.mol2") as cys_res, open("cys_residue.mol2", 'w') as cys_res_new:
+		with open("temp/cys_residue_temp.mol2") as cys_res, open("temp/cys_residue.mol2", 'w') as cys_res_new:
 			for line in cys_res:
 				# print(line)
 				col = line.split()

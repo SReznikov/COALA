@@ -2,9 +2,9 @@
 import re
 ######### numbering of ligands and poses ##############
 
-with open("flex_scored.mol2") as flex_scored:
+with open("raw_dock_scored.mol2") as flex_scored:
 
-	with open("scored_numbered.mol2", "w") as numbering:
+	with open("temp/scored_numbered.mol2", "w") as numbering:
 
 		pose_id = 0
 		ligand_id = 0
@@ -49,8 +49,8 @@ with open("flex_scored.mol2") as flex_scored:
 
 ################# load the numbered file to begin the scoring process #########################################
 
-with open("scored_numbered.mol2") as numligsfile:
-	with open("scored_ligands_temp.mol2", 'w') as scored_file:
+with open("temp/scored_numbered.mol2") as numligsfile:
+	with open("temp/scored_ligands_temp.mol2", 'w') as scored_file:
 
 		template = []
 		reference = []
@@ -137,8 +137,8 @@ with open("scored_numbered.mol2") as numligsfile:
 
 ################## tidy file ############
 
-with open("scored_ligands_temp.mol2") as temp:
-	with open("scored_ligands.mol2", 'w') as final:
+with open("temp/scored_ligands_temp.mol2") as temp:
+	with open("top_scored_ligands.mol2", 'w') as final:
 
 		for line in temp:
 			split_line = re.split(r'(\s+)', line)

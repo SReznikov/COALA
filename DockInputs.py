@@ -1,7 +1,9 @@
 import time
 import logging
 
+
 from FileLoading import args as args
+import ProgramData as data
 # from DockingProcess import new_lib_file as new_lib_file
 
 
@@ -21,7 +23,7 @@ def InsphPrep():
 				insph.write("0.0" + '\n')
 				insph.write("4.0" + '\n')
 				insph.write("1.4" + '\n')
-				insph.write("spheres.sph" + '\n')
+				insph.write("temp/spheres.sph" + '\n')
 
 
 
@@ -30,7 +32,7 @@ def ShowBox():
 
 	logging.info("creating grid file")
 
-	with open("selected_spheres.sph") as sph:
+	with open("temp/selected_spheres.sph") as sph:
 		x_coords = []
 		y_coords = []
 		z_coords = []
@@ -105,7 +107,7 @@ def ShowBox():
 		node_8_y = node_5_y
 		node_8_z = node_4_z
 
-	with open("box.pdb", "w") as showbox:
+	with open("temp/box.pdb", "w") as showbox:
 		space1 = "      "
 		space2 = "  "
 		space3 = " "
@@ -132,7 +134,7 @@ def ShowBox():
 
 
 def GridPrep():
-	with open("grid.in", 'w') as grid:
+	with open("temp/grid.in", 'w') as grid:
 		grid.write("compute_grids yes" + '\n')
 		grid.write("grid_spacing 0.4" + '\n')
 		grid.write("output_molecule no" + '\n')
@@ -146,8 +148,8 @@ def GridPrep():
 		grid.write("dielectric_factor              4" + '\n')
 		grid.write("bump_filter yes" + '\n')
 		grid.write("bump_overlap 0.75" + '\n')
-		grid.write("receptor_file" + '  ' + str(args.protein_mol2[:-5]) +"_charge.mol2" + '\n')
-		grid.write("box_file box.pdb" + '\n')
+		grid.write("receptor_file" + '  ' + "temp/" + str(data.proteinFile[:-5]) +"_charge.mol2" + '\n')
+		grid.write("box_file temp/box.pdb" + '\n')
 		grid.write("vdw_definition_file /home/sylvia/software/dock6/parameters/vdw_AMBER_parm99.defn" + '\n')
 		grid.write("score_grid_prefix grid " + '\n')
 
@@ -156,7 +158,7 @@ def FlexDock():
 	with open(args.in_file) as in_file_edit:
 		logging.info("opening")
 
-		with open("newlib_dock.in", "w") as temp:
+		with open("temp/newlib_dock.in", "w") as temp:
 			logging.info("creating temp file")
 
 		
@@ -165,14 +167,14 @@ def FlexDock():
 
 				if line.startswith("ligand_atom_file"):
 					logging.info(line)
-					line_edit = str("ligand_atom_file                                             "+str(new_lib_file) + '\n')
+					line_edit = str("ligand_atom_file                                             "+"temp/" + str(new_lib_file) + '\n')
 					logging.info(line_edit)
 					line = line_edit
 					temp.write(str(line))
 
 				elif line.startswith("rmsd_reference_filename"):
 					logging.info(line)
-					line_edit = str("rmsd_reference_filename                                      "+str(new_lib_file) + '\n')
+					line_edit = str("rmsd_reference_filename                                      "+"temp/" + str(new_lib_file) + '\n')
 					logging.info(line_edit)
 					line = line_edit
 					temp.write(str(line))

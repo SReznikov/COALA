@@ -1,6 +1,8 @@
 import time
 import logging
 import subprocess
+import os
+import shutil
 
 from FileLoading import args as args
 from FileLoading import cwd as cwd
@@ -23,7 +25,7 @@ class Docking():
 
 	def libmerge(self):
 		logging.info("Writing lib for dock6")
-		with open("re_written_lib.mol2", "w") as new_lib:
+		with open("temp/re_written_lib.mol2", "w") as new_lib:
 
 			for molecule in range(data.mol_id):		
 				molecule += 1
@@ -34,8 +36,11 @@ class Docking():
 					for line in mol_file_in:
 						new_lib.write(str(line))
 
+				shutil.move(cwd+"/"+input_molecule+"_charge.acpype/", cwd+"/temp/"+input_molecule+"_charge.acpype/")
+
 			dockInput.new_lib_file = "re_written_lib.mol2"
 			logging.info(dockInput.new_lib_file)
+
 			#remove old files
 
 	
@@ -68,14 +73,17 @@ class Docking():
 		    logging.info(line)
 		p.wait()
 		logging.info(p.returncode)
+		os.replace(cwd + "/INSPH", cwd+"/temp/INSPH")
+		os.replace(cwd + "/OUTSPH", cwd+"/temp/INSPH")
 
-		cmd = ['sphere_selector', 'spheres.sph', 'cys_residue.mol2', '5.0']
+		cmd = ['sphere_selector', 'temp/spheres.sph', 'temp/cys_residue.mol2', '5.0']
 		logging.info(str(cmd))
 		p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 		for line in p.stdout:
 		    logging.info(line)
 		p.wait()
 		logging.info(p.returncode)
+		os.replace(cwd + "/selected_spheres.sph", cwd+"/temp/selected_spheres.sph")
 
 
 		dockInput.ShowBox()
@@ -83,7 +91,7 @@ class Docking():
 		dockInput.GridPrep()
 
 
-		cmd = ['grid', '-i', 'grid.in', '-o', 'gridinfo.out']
+		cmd = ['grid', '-i', 'temp/grid.in', '-o', 'temp/gridinfo.out']
 		logging.info("creating grid")
 		logging.info(str(cmd))
 		p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -193,7 +201,7 @@ class Docking():
 		# logging.info(p.returncode)
 		
 
-		cmd = ['dock6', '-i' ,'%s' % "newlib_dock.in"]
+		cmd = ['dock6', '-i' ,'%s' % "temp/newlib_dock.in"]
 		logging.info("docking")
 		logging.info(str(cmd))
 		p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -201,6 +209,11 @@ class Docking():
 		    logging.info(line)
 		p.wait()
 		logging.info(p.returncode)
+
+		#tidy
+		os.replace(cwd + "/grid.nrg", cwd+"/temp/grid.nrg")
+		os.replace(cwd + "/grid.bmp", cwd+"/temp/grid.bmp")
+
 
 
 

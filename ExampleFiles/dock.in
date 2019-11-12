@@ -22,7 +22,7 @@ rmsd_reference_filename                                      re_written_lib_sing
 use_database_filter                                          no
 orient_ligand                                                yes
 automated_matching                                           yes
-receptor_site_file                                           selected_spheres.sph
+receptor_site_file                                           temp/selected_spheres.sph
 max_orientations                                             1000
 critical_points                                              no
 chemical_matching                                            no
@@ -66,7 +66,7 @@ atom_model                                                   all
 vdw_defn_file                                                /home/sylvia/software/dock6/parameters/vdw_AMBER_parm99.defn
 flex_defn_file                                               /home/sylvia/software/dock6/parameters/flex.defn
 flex_drive_file                                              /home/sylvia/software/dock6/parameters/flex_drive.tbl
-ligand_outfile_prefix                                        flex
+ligand_outfile_prefix                                        raw_dock
 write_orientations                                           no
 num_scored_conformers                                        100
 write_conformations                                          no

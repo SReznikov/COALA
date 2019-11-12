@@ -30,6 +30,7 @@ class Minimization():
 			    logging.info(line)
 			p.wait()
 			logging.info(p.returncode)
+			# os.replace(cwd+"/"+input_molecule+"_charge.acpype/"+input_molecule, cwd+"/temp/"+input_molecule+"_charge.acpype/"+input_molecule)
 
 		if signal == 2:
 			logging.info("ACPYPE running")
@@ -41,6 +42,7 @@ class Minimization():
 			    logging.info(line)
 			p.wait()
 			logging.info(p.returncode)
+			# os.replace(cwd+"/"+input_molecule+"_charge.acpype/"+input_molecule, cwd+"/temp/"+input_molecule+"_charge.acpype/"+input_molecule)
 
 	def deprotonation(signal): #ligand deprotonation??
 
@@ -66,14 +68,14 @@ class Minimization():
 
 		if signal == 0:
 			logging.info("loading file")
-			with open(cwd+"/new_coords_temp.mol2") as new_mol2:
+			with open(cwd+"/temp/new_coords_temp.mol2") as new_mol2:
 				loading()
 
 		if signal == 1:
 			logging.info("loading file from acpype")
 
 
-			with open(cwd+"/new_coords_temp.acpype/new_coords_temp_bcc_gaff.mol2") as new_mol2:
+			with open(cwd+"new_coords_temp.acpype/new_coords_temp_bcc_gaff.mol2") as new_mol2:
 				loading()
 
 		for i in range(data.range_of_atoms_new):
@@ -188,7 +190,7 @@ class Minimization():
 	def write_mol2_gaff(input_molecule):
 		logging.info("Writing the 2nd mol2 file")
 
-		with open(input_molecule+"_charge.mol2", "w") as mol2:
+		with open("temp/" + input_molecule+"_charge.mol2", "w") as mol2:
 			for i in range(5):
 				short_name = (str(data.MinSection.sections["section_%s" %i]["name"]).strip('[' + ']' + '\'' + '\\' + 'n'))
 
