@@ -72,7 +72,8 @@ for molecule in range(data.mol_id):
 	data.range_of_bonds = len(data.Section.sections["section_%s" %3]["lines"]) 
 	data.starting_range_of_atoms = len(data.Section.sections["section_%s" %2]["lines"]) 
 	data.starting_range_of_bonds = len(data.Section.sections["section_%s" %3]["lines"]) 
-
+	print(data.Section.sections["section_%s" %3]["lines"], "bonds####")
+	print(len(data.Section.sections["section_%s" %3]["lines"]), "len ###########")
 	input_molecule = data.mol2File[:-5] + "_mol_" + molecule 
 	
 	data.SectionTemplate()

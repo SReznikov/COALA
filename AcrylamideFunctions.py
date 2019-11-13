@@ -1,3 +1,5 @@
+import time
+import logging
 import numpy as np
 import math
 
@@ -132,6 +134,7 @@ def AngleCalc2():
 
 	if data.C2i == 0:
 		logging.error("Error: no adjecent sp2 carbon")
+		
 
 
 	if data.C2i != 0:

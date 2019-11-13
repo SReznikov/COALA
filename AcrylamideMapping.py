@@ -36,8 +36,8 @@ class AcrylamideMapping():
 		self.AcrylamideRotationCXY()
 
 	def Sectioning(self):
-		print(data.range_of_atoms)
-		data.i = data.range_of_atoms
+		print(data.range_of_bonds)
+		data.i = data.range_of_bonds
 		for n in range(5):
 
 			short_name = (str(data.Section.sections["section_%s" % n]["name"]).strip('[' + '\'' + '@' + '<' + '\\' + 'n' + '\'' + ']'))

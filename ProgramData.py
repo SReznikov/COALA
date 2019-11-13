@@ -53,6 +53,7 @@ if range_of_atoms > 0:
 def SectionTemplate():
 	# Ligand preparation templates and data
 	i = 0
+	b = 0
 	SectionTemplate.atom_list = {}
 	SectionTemplate.bond_list = {}
 	# atom and bond list definitions
@@ -62,7 +63,7 @@ def SectionTemplate():
 		# print(i)
 		i += 1
 		SectionTemplate.atom_list["atom_%s" % i] = {}
-		SectionTemplate.bond_list["bond_%s" % i] = {}
+		
 
 		SectionTemplate.atom_list["atom_%s" % i]["atom_id"] = []
 		SectionTemplate.atom_list["atom_%s" % i]["atom_name"] = []
@@ -73,10 +74,14 @@ def SectionTemplate():
 		SectionTemplate.atom_list["atom_%s" % i]["lig_name"] = []
 		SectionTemplate.atom_list["atom_%s" % i]["charge"] = []
 
-		SectionTemplate.bond_list["bond_%s" % i]["bond_id"] = []
-		SectionTemplate.bond_list["bond_%s" % i]["a1"] = [] # origin arom
-		SectionTemplate.bond_list["bond_%s" % i]["a2"] = [] # target atom
-		SectionTemplate.bond_list["bond_%s" % i]["bond_type"] = []
+	for b in range(range_of_bonds):
+		print(range_of_bonds, "bond range")
+		b+=1
+		SectionTemplate.bond_list["bond_%s" % b] = {}
+		SectionTemplate.bond_list["bond_%s" % b]["bond_id"] = []
+		SectionTemplate.bond_list["bond_%s" % b]["a1"] = [] # origin arom
+		SectionTemplate.bond_list["bond_%s" % b]["a2"] = [] # target atom
+		SectionTemplate.bond_list["bond_%s" % b]["bond_type"] = []
 
 		# print(atom_list.values())
 
@@ -104,6 +109,7 @@ def NewBonds():
 	# H5_num = 0
 	# H6_num = 0
 	H7_num = range_of_atoms + 2
+	print(range_of_atoms, H4_num, H7_num, C2i, "range, h4, h7, c2i")
 
 	SectionTemplate.atom_list["atom_%s" % H4_num] = {}
 	SectionTemplate.atom_list["atom_%s" % H4_num]["atom_id"] = []

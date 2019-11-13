@@ -45,11 +45,13 @@ class Minimization():
 			# os.replace(cwd+"/"+input_molecule+"_charge.acpype/"+input_molecule, cwd+"/temp/"+input_molecule+"_charge.acpype/"+input_molecule)
 
 	def deprotonation(signal): #ligand deprotonation??
-
+		print(data.bond_list_new.keys(), "new bonds keys")
 		logging.info(signal)
 		data.MinSection()
+		print(data.bond_list_new.keys(), "new bonds keys")
 
 		def loading():
+			print(data.bond_list_new.keys(), "new bonds keys")
 			print(data.MinSection.sections.keys())
 			for line in new_mol2:
 				if line.startswith('@'):
@@ -81,7 +83,7 @@ class Minimization():
 		for i in range(data.range_of_atoms_new):
 			i += 1
 			data.atom_list_new["atom_%s" % i] = {}
-			data.bond_list_new["bond_%s" % i] = {}
+			# data.bond_list_new["bond_%s" % i] = {}
 
 			data.atom_list_new["atom_%s" % i]["atom_id"] = []
 			data.atom_list_new["atom_%s" % i]["atom_name"] = []
@@ -92,9 +94,15 @@ class Minimization():
 			data.atom_list_new["atom_%s" % i]["lig_name"] = []
 			data.atom_list_new["atom_%s" % i]["charge"] = []
 
+		# print(data.bond_list_new.keys(), "new bonds keys")
 		for b in range(data.range_of_bonds_new):
+			# print(b, "b", data.range_of_bonds_new, "range",range(data.range_of_bonds_new))
 			b += 1
+			data.bond_list_new["bond_%s" % b] = {}
+			# print(b, "b", data.range_of_bonds_new, range(data.range_of_bonds_new))
 
+			# print(data.range_of_bonds_new, "new bond id")
+			# print(data.bond_list_new.keys(), "keys")
 			data.bond_list_new["bond_%s" % b]["bond_id"] = []
 			data.bond_list_new["bond_%s" % b]["a1"] = []
 			data.bond_list_new["bond_%s" % b]["a2"] = []
